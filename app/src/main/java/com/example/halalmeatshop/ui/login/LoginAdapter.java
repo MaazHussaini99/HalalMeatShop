@@ -26,11 +26,22 @@ public class LoginAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        Fragment fragment = new LoginFragment();
-        Bundle args = new Bundle();
-        args.putString(LoginFragment.TITLE, "Login");
-        fragment.setArguments(args);
-        return fragment;
+
+        if(position == 0){
+            Fragment fragment = new LoginFragment();
+            Bundle args = new Bundle();
+            args.putString(LoginFragment.TITLE, "Login");
+            fragment.setArguments(args);
+            return fragment;
+        }else if (position == 1){
+            Fragment fragment1 = new SignUpFragment();
+            Bundle args = new Bundle();
+            args.putString(SignUpFragment.TITLE, "Sign Up");
+            fragment1.setArguments(args);
+            return fragment1;
+        }
+
+return null;
     }
 
     @Override

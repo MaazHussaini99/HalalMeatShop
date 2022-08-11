@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
 //        tabLayout.addTab(tabLayout.newTab().setText("Login"));
 //        tabLayout.addTab(tabLayout.newTab().setText("Sign Up"));
-//        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         LoginAdapter adapter = new LoginAdapter(getSupportFragmentManager(), this, tabLayout.getTabCount(), getLifecycle());
         viewPager.setAdapter(adapter);
@@ -75,7 +75,15 @@ public class LoginActivity extends AppCompatActivity {
 //            tab.setTabGravity(TabLayout.GRAVITY_FILL);
         }).attach();
 
+        LoginAdapter adapter1 = new LoginAdapter(getSupportFragmentManager(), this, tabLayout.getTabCount(), getLifecycle());
+        viewPager.setAdapter(adapter1);
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position1) ->{
+            if(position1 == 0){
+                tab.setText("Login");
+            }else
+                tab.setText("Sign Up");
 
+        }).attach();
 
 
 //        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -88,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
         fb.setAlpha(v);
         Google.setAlpha(v);
         twitter.setAlpha(v);
+        tabLayout.setAlpha(v);
 
         fb.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
         Google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
