@@ -18,6 +18,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,7 +38,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
-    private ActivityLoginBinding binding;
+//    private ActivityLoginBinding binding;
     TabLayout tabLayout;
     ViewPager2 viewPager;
     FloatingActionButton fb, Google, twitter;
@@ -45,9 +47,17 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
+        setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_login);
-        binding = ActivityLoginBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+
+
+
+//        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+//        setContentView(binding.getRoot());
 
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
@@ -64,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         Google = findViewById(R.id.fab_google);
         twitter = findViewById(R.id.fab_tweet);
 
+        Google.setImageResource(R.drawable.google);
 //        tabLayout.addTab(tabLayout.newTab().setText("Login"));
 //        tabLayout.addTab(tabLayout.newTab().setText("Sign Up"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
